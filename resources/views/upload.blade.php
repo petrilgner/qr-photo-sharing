@@ -75,7 +75,7 @@
         parallelUploads: 100,
         acceptedFiles: "image/*,video/*", // Accept images and videos only
         addRemoveLinks: true, // Show remove links
-        dictDefaultMessage: "Pretiahnite sem obrázky alebo videá na nahratie",
+        dictDefaultMessage: "Pre nahratie fotiek alebo videí, kliknite sem",
         dictRemoveFile: "Odstrániť", // Text for remove link
         init: function () {
             // Reference to Dropzone instance
