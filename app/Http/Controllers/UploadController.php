@@ -35,38 +35,19 @@ class UploadController
             dump($file);
             // Generate a unique name for the file
             $parts = [time()];
-            if($name) {
-                $parts[] = self::webalize($name);
-            }
             $parts[] = $file->getClientOriginalName();
-
+            $filename = implode('_', $parts);
             // Save the file to the storage (public disk)
-            $path = $file->storeAs('uploads', implode('_', $parts), 'public');
+            $path = $file->storeAs('uploads', $filename, 'public');
             // Store the file path
             $filePaths[] = $path;
+            Log::info("$file:$name");
         }
 
         Log::info(implode($filePaths));
 
         // return the result
         return response()->json('success');
-    }
-
-    private static function webalize($string)
-    {
-        // Convert to lowercase
-        $string = strtolower($string);
-
-        // Remove accents
-        $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
-
-        // Replace non-alphanumeric characters with dashes
-        $string = preg_replace('/[^a-z0-9]+/', '-', $string);
-
-        // Trim dashes from the beginning and end
-        $string = trim($string, '-');
-
-        return $string;
     }
 
 
