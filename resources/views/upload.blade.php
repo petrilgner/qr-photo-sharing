@@ -103,7 +103,8 @@
 
             // Handling queue complete (when all files have been processed)
             dz.on("queuecomplete", function () {
-                alert("Všetky súbory boli úspešne nahrané.");
+
+                window.location.replace("/dakujeme");
             });
         }
     });

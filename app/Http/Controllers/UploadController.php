@@ -16,6 +16,11 @@ class UploadController
         return view('upload');
     }
 
+    public function thanks()
+    {
+        return view('thanks');
+    }
+
     /**
      * Handle the form submission
      */
