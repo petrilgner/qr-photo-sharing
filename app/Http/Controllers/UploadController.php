@@ -29,22 +29,17 @@ class UploadController
         $uploadedFiles = $request->file('file');
         $name = $request->input('name');
         $filePaths = [];
-        dump($uploadedFiles);
 
         foreach ($uploadedFiles as $file) {
-            dump($file);
             // Generate a unique name for the file
             $parts = [time()];
             $parts[] = $file->getClientOriginalName();
             $filename = implode('_', $parts);
             // Save the file to the storage (public disk)
             $path = $file->storeAs('uploads', $filename, 'public');
-            // Store the file path
-            $filePaths[] = $path;
-            Log::info("$file:$name");
-        }
 
-        Log::info(implode($filePaths));
+            Log::info("$filename:$name");
+        }
 
         // return the result
         return response()->json('success');
